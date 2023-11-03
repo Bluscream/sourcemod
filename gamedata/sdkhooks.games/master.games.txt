@@ -61,6 +61,11 @@
 		"engine"	"insurgency"
 		"engine"	"doi" // #cheating #yolo
 	}
+
+	"engine.mcv.txt"
+	{
+		"engine"	"mcv"
+	}
 	
 /*
 	Not Yet
@@ -198,5 +203,9 @@
 	"game.reactivedrop.txt"
 	{
 		"game"		"reactivedrop"
+	}
+	"game.openfortress.txt"
+	{
+		"game"		"open_fortress"
 	}
 }
