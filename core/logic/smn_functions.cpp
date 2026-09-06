@@ -91,12 +91,6 @@ public:
 } g_ForwardNativeHelpers;
 
 
-/* Turn a public index into a function ID */
-inline funcid_t PublicIndexToFuncId(uint32_t idx)
-{
-	return (idx << 1) | (1 << 0);
-}
-
 /* Reset global function/forward call variables */
 inline void ResetCall()
 {
@@ -135,8 +129,13 @@ static cell_t sm_GetFunctionByName(IPluginContext *pContext, const cell_t *param
 		return pContext->GetNullFunctionValue();
 	}
 
+	/* Turn a public index into a function ID */
+	sp_public_t *func;
+	if (pPlugin->GetBaseContext()->GetBaseRuntime()->GetPublicByIndex(idx, &func) != SP_ERROR_NONE)
+		return pContext->GetNullFunctionValue();
+
 	/* Return function ID */
-	return PublicIndexToFuncId(idx);
+	return func->funcid;
 }
 
 static cell_t sm_CreateGlobalForward(IPluginContext *pContext, const cell_t *params)
